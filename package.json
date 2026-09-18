@@ -1,0 +1,15 @@
+{
+  "name": "agenttill",
+  "version": "0.1.0",
+  "private": true,
+  "description": "AgentTill — policy-bound agentic USDC till on Circle Arc for Microgrants",
+  "scripts": {
+    "test:contracts": "cd packages/contracts && forge test",
+    "dev:web": "cd apps/web && npm run dev",
+    "build:web": "cd apps/web && npm run build",
+    "install:web": "cd apps/web && npm install"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

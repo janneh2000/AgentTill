@@ -1,0 +1,11 @@
+{
+  "name": "@agenttill/contracts",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "test": "forge test",
+    "build": "forge build",
+    "deploy:testnet": "forge script script/Deploy.s.sol:Deploy --rpc-url https://rpc.testnet.arc.io --broadcast",
+    "deploy:mainnet": "forge script script/Deploy.s.sol:Deploy --rpc-url https://rpc.mainnet.arc.io --broadcast"
+  }
+}
