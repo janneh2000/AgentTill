@@ -6,12 +6,11 @@ import { AgentCard } from "@/components/AgentCard";
 import { Ledger } from "@/components/Ledger";
 import { SpendConsole } from "@/components/SpendConsole";
 import { OwnerControls } from "@/components/OwnerControls";
+import { TillAddressBar } from "@/components/TillAddressBar";
 import { TYPICAL_FEE_USD } from "@/config/chains";
-import { getTillAddress } from "@/config/env";
 
 export default function DashboardPage() {
-  const { network, demo, demoState } = useAppState();
-  const tillAddr = getTillAddress();
+  const { network, demo, demoState, tillAddress } = useAppState();
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-10">
@@ -20,8 +19,8 @@ export default function DashboardPage() {
           <h1 className="text-2xl font-semibold tracking-tight text-white">Till dashboard</h1>
           <p className="mt-1 text-sm text-slate-400">
             {demo
-              ? "Demo / mock mode — set NEXT_PUBLIC_AGENT_TILL_ADDRESS to bind a deployed contract."
-              : `Onchain till ${tillAddr}`}
+              ? "Demo / mock mode — set NEXT_PUBLIC_AGENT_TILL_ADDRESS or paste a till below."
+              : `Onchain till ${tillAddress}`}
             {" · "}
             Network: {network === "mainnet" ? "Arc Mainnet (5042)" : "Arc Testnet (5042002)"}
           </p>
@@ -29,6 +28,10 @@ export default function DashboardPage() {
         <div className="rounded-full border border-white/10 bg-ink-900 px-3 py-1.5 text-xs text-slate-400">
           Typical Arc fee {TYPICAL_FEE_USD}
         </div>
+      </div>
+
+      <div className="mb-6">
+        <TillAddressBar />
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">

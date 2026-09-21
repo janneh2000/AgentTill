@@ -83,6 +83,22 @@ cd packages/contracts
 forge script script/Deploy.s.sol:Deploy --rpc-url https://rpc.testnet.arc.io --broadcast
 ```
 
+
+## Cloudflare Workers / Pages
+
+`NEXT_PUBLIC_*` vars are **inlined at build time**. Set them in the Cloudflare dashboard (or `wrangler`) **and rebuild** — runtime-only env changes will not update the client bundle.
+
+| Variable | Example | Notes |
+|----------|---------|--------|
+| `NEXT_PUBLIC_AGENT_TILL_ADDRESS` | `0xA40E8DA38760eAf987eF85CD00b28319F11c4CAD` | Deployed AgentTill; omit for demo mode |
+| `NEXT_PUBLIC_DEFAULT_NETWORK` | `testnet` | `testnet` \| `mainnet` (Arc 5042002 / 5042) |
+| `NEXT_PUBLIC_USDC_ADDRESS` | `0x3600…0000` | Optional; defaults to Arc canonical USDC |
+| `NEXT_PUBLIC_WC_PROJECT_ID` | *(public WC id)* | Optional; injected wallets work without it |
+
+After changing these, trigger a fresh Workers/Pages build so the dashboard binds the onchain till (header shows the address; spend/owner use wagmi `spend` / `fund` / etc.).
+
+You can also paste a till address in the dashboard **Till address** bar (localStorage override) without rebuilding.
+
 ## DoraHacks / submission blurb
 
 **AgentTill** is a policy-bound USDC micropayment desk on Circle Arc for microgrants: owners escrow budget, agents spend within onchain caps/allowlists, and the ledger shows dollar fees — built for Arc’s USDC-native L1.
